@@ -9,7 +9,14 @@
         "**/.retool_types/**": true,
         "**/*tsconfig.json": true,
         ".cache": true,
-        "retool.config.json": true
+        "retool.config.json": true,
+        "body-scripts.js": true,
+        "external-scripts.js": true,
+        "head-scripts.js": true
     },
-    "hide-files.files": []
+    "hide-files.files": [
+        "body-scripts.js",
+        "external-scripts.js",
+        "head-scripts.js"
+    ]
 }

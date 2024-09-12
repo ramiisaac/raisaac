@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Define filenames to ignore (scripts you don't want to double index)
-IGNORE_FILES=("head-scripts.js" "body-scripts.js" "external-scripts.js")
+IGNORE_FILES=("head-scripts.js" "body-scripts.js" "external-scripts.js" "core.js")
 
 # Function to check if the file is ignored
 is_ignored() {
@@ -15,9 +15,10 @@ is_ignored() {
 
 # Generate external-scripts.js (for external libraries)
 echo "/* External libraries script */" > external-scripts.js
-echo "<script src=\"https://cdn.jsdelivr.net/npm/gsap@3.9.1/dist/gsap.min.js\" onload=\"window.GSAP = gsap;\"></script>" >> external-scripts.js
-echo "<script src=\"https://cdn.jsdelivr.net/npm/gsap@3.9.1/dist/ScrollTrigger.min.js\" onload=\"window.ScrollTrigger = ScrollTrigger;\"></script>" >> external-scripts.js
-echo "<script src=\"https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.3/dist/locomotive-scroll.min.js\" onload=\"window.LocomotiveScroll = LocomotiveScroll;\"></script>" >> external-scripts.js
+echo "<script src=\"https://cdn.jsdelivr.net/npm/gsap@3.9.1/dist/gsap.min.js\"></script>" >> external-scripts.js
+echo "<script src=\"https://cdn.jsdelivr.net/npm/gsap@3.9.1/dist/ScrollTrigger.min.js\"></script>" >> external-scripts.js
+echo "<script src=\"https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.3/dist/locomotive-scroll.min.js\"></script>" >> external-scripts.js
+echo "<script src=\"https://unpkg.com/split-type\"></script>" >> external-scripts.js
 
 # Generate head-scripts.js (for CSS files)
 echo "/* Head styles generated on $(date) */" > head-scripts.js
@@ -30,6 +31,7 @@ done
 
 # Generate body-scripts.js (for JS files)
 echo "/* Body scripts generated on $(date) */" > body-scripts.js
+echo "<script src=\"https://cdn.jsdelivr.net/gh/ramiisaac/raisaac@main/core.js\"></script>" >> body-scripts.js
 find . -type f -name "*.js" | while read file; do
   if ! is_ignored "$file"; then
     filename=$(basename "$file")
@@ -39,11 +41,14 @@ done
 
 # Display content for copy-pasting (starting with external libraries)
 echo ""
-echo "/* External Libraries (Place in head or body as needed) */"
+echo "/* External Libraries (Place in head) */"
 cat external-scripts.js
 echo ""
-echo "/* Generated Head CSS Links */"
+echo "/* Generated Head CSS Links (Place in head) */"
 cat head-scripts.js
 echo ""
-echo "/* Generated Body JS Links */"
+echo "/* Generated Body JS Links (Place at end of body) */"
 cat body-scripts.js
+echo ""
+echo "/* Core initialization (Place at end of body after all other scripts) */"
+echo "<script>MyProject.initializeAll();</script>"
