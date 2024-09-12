@@ -1,0 +1,113 @@
+/* brand */
+:root,
+body,
+[data-brand="1"] {
+  --swatch--brand: var(--swatch--brand-1);
+  --swatch--dark: var(--swatch--dark-1);
+  --swatch--brand-text: var(--swatch--light);
+}
+[data-brand="2"] {
+  --swatch--brand: var(--swatch--brand-2);
+  --swatch--dark: var(--swatch--dark-2);
+  --swatch--brand-text: var(--swatch--dark-2);
+}
+[data-brand="3"] {
+  --swatch--brand: var(--swatch--brand-3);
+  --swatch--dark: var(--swatch--dark-3);
+  --swatch--brand-text: var(--swatch--light);
+}
+
+/* theme light */
+:root,
+body,
+[data-theme="light"],
+[data-theme="dark"] [data-theme="invert"] {
+  --theme--background: var(--swatch--light);
+  --theme--text: var(--swatch--dark);
+  --theme--border: var(--swatch--dark-fade);
+  /* button solid */
+  --button--background: var(--swatch--brand);
+  --button--text: var(--swatch--brand-text);
+  --button--border: var(--swatch--brand);
+  --button--background-hover: var(--swatch--dark);
+  --button--text-hover: var(--swatch--light);
+  --button--border-hover: var(--swatch--dark);
+  /* button secondary */
+  --button-secondary--background: var(--swatch--transparent);
+  --button-secondary--text: var(--swatch--dark);
+  --button-secondary--border: var(--swatch--brand);
+  --button-secondary--background-hover: var(--swatch--brand);
+  --button-secondary--text-hover: var(--swatch--brand-text);
+  --button-secondary--border-hover: var(--swatch--brand);
+  /* button outlined */
+  --button-outlined--background: var(--swatch--transparent);
+  --button-outlined--text: var(--swatch--dark);
+  --button-outlined--border: var(--swatch--brand);
+  --button-outlined--background-hover: var(--swatch--brand);
+  --button-outlined--text-hover: var(--swatch--brand-text);
+  --button-outlined--border-hover: var(--swatch--brand);
+  /* link */
+  --link--text: var(--swatch--dark);
+  --link--text-hover: var(--swatch--dark-fade);
+  --link--text-active: var(--swatch--brand);
+}
+
+/* theme dark */
+[data-theme="dark"],
+[data-theme="invert"],
+[data-theme="light"] [data-theme="invert"] {
+  --theme--background: var(--swatch--dark);
+  --theme--text: var(--swatch--light);
+  --theme--border: var(--swatch--light-fade);
+  /* button solid */
+  --button--background: var(--swatch--brand);
+  --button--text: var(--swatch--brand-text);
+  --button--border: var(--swatch--brand);
+  --button--background-hover: var(--swatch--light);
+  --button--text-hover: var(--swatch--dark);
+  --button--border-hover: var(--swatch--light);
+  /* button secondary */
+  --button-secondary--background: var(--swatch--transparent);
+  --button-secondary--text: var(--swatch--light);
+  --button-secondary--border: var(--swatch--brand);
+  --button-secondary--background-hover: var(--swatch--brand);
+  --button-secondary--text-hover: var(--swatch--brand-text);
+  --button-secondary--border-hover: var(--swatch--brand);
+  /* button outlined */
+  --button-outlined--background: var(--swatch--transparent);
+  --button-outlined--text: var(--swatch--light);
+  --button-outlined--border: var(--swatch--brand);
+  --button-outlined--background-hover: var(--swatch--brand);
+  --button-outlined--text-hover: var(--swatch--brand-text);
+  --button-outlined--border-hover: var(--swatch--brand);
+  /* link */
+  --link--text: var(--swatch--light);
+  --link--text-hover: var(--swatch--light-fade);
+  --link--text-active: var(--swatch--brand);
+}
+
+/* button secondary */
+[data-button-style="secondary"] {
+  --button--background: var(--button-secondary--background);
+  --button--text: var(--button-secondary--text);
+  --button--border: var(--button-secondary--border);
+  --button--background-hover: var(--button-secondary--background-hover);
+  --button--text-hover: var(--button-secondary--text-hover);
+  --button--border-hover: var(--button-secondary--border-hover);
+}
+
+/* button outlined */
+[data-button-style="outlined"] {
+  --button--background: var(--button-outlined--background);
+  --button--text: var(--button-outlined--text);
+  --button--border: var(--button-outlined--border);
+  --button--background-hover: var(--button-outlined--background-hover);
+  --button--text-hover: var(--button-outlined--text-hover);
+  --button--border-hover: var(--button-outlined--border-hover);
+}
+
+/* apply colors */
+:is(c, :where([data-theme]:not([data-theme="inherit"]))) {
+  background-color: var(--theme--background);
+  color: var(--theme--text);
+}
